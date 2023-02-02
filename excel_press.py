@@ -41,10 +41,10 @@ def main():
 
 		decompressed = CompressedVBA(data)
 		compressed = decompressed.compress()
-		print compressed
+		print(compressed)
 	else:
 		macro_file = open(args.decompress, 'rb').read()
-		print decompress(macro_file, raw=args.raw)
+		print (decompress(macro_file, raw=args.raw))
 
 # Decompression algorithm
 def decompress(data, raw=False):
