@@ -41,10 +41,10 @@ def main():
 
 		decompressed = CompressedVBA(data)
 		compressed = decompressed.compress()
-		print compressed
+		print(compressed)
 	else:
 		macro_file = open(args.decompress, 'rb').read()
-		print decompress(macro_file, raw=args.raw)
+		print (decompress(macro_file, raw=args.raw))
 
 # Decompression algorithm
 def decompress(data, raw=False):
@@ -195,7 +195,7 @@ class CompressedVBA(VBAStream):
 		token_flags = 0
 		self.compressed_current = self.compressed_current + 1
 
-		for index in xrange(0, 8):
+		for index in range(0, 8):
 			if ((self.decompressed_current < decompressed_end) and (self.compressed_current < compressed_end)):
 				token_flags = self.compress_token(compressed_end, decompressed_end, index, token_flags)
 		self.compressed_container[flag_byte_index] = token_flags
@@ -291,13 +291,13 @@ class CompressedVBA(VBAStream):
 		if self.decompressed_buffer_end < last_byte:
 			last_byte =  self.decompressed_buffer_end
 
-		for index in xrange(self.decompressed_chunk_start, last_byte):
+		for index in range(self.decompressed_chunk_start, last_byte):
 			self.compressed_container[self.compressed_current] = self.data[index]
 			self.compressed_current = self.compressed_current + 1
 			self.decompressed_current = self.decompressed_current + 1
 			pad_count = pad_count - 1
 
-		for index in xrange(0, pad_count):
+		for index in range(0, pad_count):
 			self.compressed_container[self.compressed_current] = 0x0;
 			self.compressed_current = self.compressed_current + 1
 
